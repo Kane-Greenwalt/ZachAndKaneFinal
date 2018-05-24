@@ -12,12 +12,14 @@
 #include<Windows.h>
 #include"AlienLevel.h"
 #include"Easy.h"
+#include <fstream>
+
 
 using namespace std;
 
 int Alienhealth = 50;
 
-int main()
+void main()
 {
 
 	int levelchoice;
@@ -42,6 +44,10 @@ int main()
 	cout << " |_|______|                                   " << endl;
 	cout << "                                              " << endl;
 	cout << " Select a level " << endl << " Level [1] - Easy \n Level [2] - Medium \n Level [3] - Hard \n Level [4] - Alien Survival " << endl;
+	
+	cout << "Currents high scores are:  " << endl;
+	
+	
 	cin >> levelchoice;
 	if (levelchoice == 1)
 	{
@@ -63,5 +69,4 @@ int main()
 	}
 
 	system("Pause");
-	return 0;
 }

@@ -8,8 +8,7 @@
 #include<cstdlib>
 #include<time.h>
 #include<iomanip>
-
-
+#include <fstream>
 
 using namespace std;
 
@@ -17,6 +16,37 @@ int Wood = 50;
 int Food = 50;
 int health = 20;
 int settlement = 0;
+int GatherHighScore()//Displays the Highscores
+{
+	string text;
+	ifstream file;
+	file.open("HighScore.txt");
+	getline(file, text);
+
+	if (text == "")
+	{
+		cout << "There is no highscores yet." << endl;
+	}
+	else
+	{
+		cout << "The high scores are:" << endl;
+		cout << text << endl;
+	}
+	return 0;
+}
+int EnterHighScore()//EnterAHighscore
+{
+	GatherHighScore();
+
+	string text;
+	ofstream file;
+	file.open("HighScore.txt");
+	cout << "EnterYourScore" << endl;
+	getline(cin, text);
+	file << text;
+
+	return 0;
+}
 int Collector()//collect resources
 {
 	
@@ -125,7 +155,7 @@ int TurnSystem(int count)//Turn System
 			health = health -= 20;
 		}
 	} while(count < 26 || settlement >= 3);
-	cout << "You failed to build 3 settlements in the time given, please try again." << endl;
+	EnterHighScore();
 	system("Pause");
 	return 0;
 }
