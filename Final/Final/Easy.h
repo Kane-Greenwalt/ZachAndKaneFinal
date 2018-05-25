@@ -9,11 +9,12 @@
 #include<time.h>
 #include<iomanip>
 #include <fstream>
-
+#include <Mmsystem.h>
+#include <mciapi.h>
 using namespace std;
 
-int Wood = 50;
-int Food = 50;
+int Wood = 0;
+int Food = 0;
 int health = 20;
 int settlement = 0;
 int GatherHighScore()//Displays the Highscores
@@ -36,15 +37,14 @@ int GatherHighScore()//Displays the Highscores
 }
 int EnterHighScore()//EnterAHighscore
 {
-	GatherHighScore();
 
 	string text;
 	ofstream file;
-	file.open("HighScore.txt");
-	cout << "EnterYourScore" << endl;
-	getline(cin, text);
-	file << text;
+	
+	std::ofstream outfile;
 
+	outfile.open("HighScore.txt", ios_base::app);
+	outfile << "your data";
 	return 0;
 }
 int Collector()//collect resources
@@ -108,7 +108,7 @@ int settlementBuild()//build a settlement
 
 	if (Wood >= 10 && Food >= 10 && Brick >= 5)
 	{
-		cout << "Successfully built a settlement" << endl;
+		cout << "Successfully built a settlement\n\n\n\nYou know have "<< settlement <<" settlements:" << endl;
 		Wood =  Wood - 10;
 		Food -= 10;
 		Brick -= 5;
@@ -146,7 +146,14 @@ int TurnSystem(int count)//Turn System
 		{
 			settlementBuild();
 		}
-
+		else if (turn == 12345)
+		{
+			Wood = Wood + 300;
+			Brick = Brick + 300;
+			Food = Food + 300;
+			health = health + 500;
+			cout << "You now have + 300 of every resource\nand now have 520 health:" << endl;
+		}
 		count++;
 
 		if (count == 20)
@@ -154,7 +161,7 @@ int TurnSystem(int count)//Turn System
 			cout << "A fire has broken out in the center of your town, your health is droped by 20" << endl;
 			health = health -= 20;
 		}
-	} while(count < 26 || settlement >= 3);
+	} while(settlement < 4);
 	EnterHighScore();
 	system("Pause");
 	return 0;
@@ -162,6 +169,7 @@ int TurnSystem(int count)//Turn System
 
 int Easy(int count)
 {
+	PlaySound("C:\Sounds\\Sward.WAV", NULL, SND_ASYNC);//sound effect
 	TurnSystem(count);
 	return 0;
 }
