@@ -89,11 +89,15 @@ int Defence()
 	int defcount = 0;
 
 	do{
+		cout << "It will cost 5 Food, and 5 Brick to upgrade." << endl;
 		cout << "Are you sure you would like to upgrade? \n1-Yes\n2-No" << endl;
 		cin >> upgrade1;
-		if (upgrade1 == 10)
+		if (upgrade1 == 1)
 		{
 			health++;
+			Food = Food - 5;
+			Brick = Brick - 5;
+			cout << "Your Health is now " << health << " \n and you now have " << Food << " Food and " << Brick << " Brick. " << endl;
 
 		}
 
@@ -108,12 +112,11 @@ int settlementBuild()//build a settlement
 
 	if (Wood >= 10 && Food >= 10 && Brick >= 5)
 	{
-		cout << "Successfully built a settlement\n\n\n\nYou know have "<< settlement <<" settlements:" << endl;
+		cout << "Successfully built a settlement\n\n\n\nYou now have "<< settlement <<" settlements:" << endl;
 		Wood =  Wood - 10;
 		Food -= 10;
 		Brick -= 5;
 		settlement++;
-		system("pause");
 		return 0;
 	}
 }
@@ -163,13 +166,13 @@ int TurnSystem(int count)//Turn System
 		}
 	} while(settlement < 4);
 	EnterHighScore();
-	system("Pause");
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+	cout << "                  Congrats! You win! You built 3 settlements."<< endl << "                            It took you "<< count <<" tries.\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
 	return 0;
 }
 
 int Easy(int count)
 {
-	PlaySound("C:\Sounds\\Sward.WAV", NULL, SND_ASYNC);//sound effect
 	TurnSystem(count);
 	return 0;
 }
