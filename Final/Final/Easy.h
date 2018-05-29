@@ -35,18 +35,6 @@ int GatherHighScore()//Displays the Highscores
 	}
 	return 0;
 }
-int EnterHighScore()//EnterAHighscore
-{
-
-	string text;
-	ofstream file;
-	
-	std::ofstream outfile;
-
-	outfile.open("HighScore.txt", ios_base::app);
-	outfile << "your data";
-	return 0;
-}
 int Collector()//collect resources
 {
 	
